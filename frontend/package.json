@@ -13,6 +13,9 @@
     "crypto": "0.0.3",
     "express": "^4.13.4",
     "redis": "^2.6.0-0",
-    "request": "^2.69.0"
+    "request": "^2.69.0",
+    "saucier-cache": "^0.1.0",
+    "saucier-core": "^2.0.1",
+    "saucier-get": "^0.1.0"
   }
 }
