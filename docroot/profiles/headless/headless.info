@@ -32,6 +32,7 @@ dependencies[] = restful
 dependencies[] = strongarm
 
 ; Custom
+dependencies[] = headless_restful
 
 ; Features
 dependencies[] = headless_field_bases

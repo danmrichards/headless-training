@@ -1,0 +1,6 @@
+<?php
+
+/**
+ * @file
+ * Provides hooks and functions for the headless RESTful module.
+ */

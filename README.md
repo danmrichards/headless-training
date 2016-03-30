@@ -22,6 +22,16 @@ Enable it:
 drush en devel_generate --uri=default -y
 ```
 
+Generate some taxonomy terms:
+
+```
+drush generate-terms category --uri=default
+```
+
+```
+drush generate-terms series --uri=default
+```
+
 Generate some content:
 
 ```

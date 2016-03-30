@@ -277,4 +277,14 @@ function headless_install() {
     ->execute();
   variable_set('admin_theme', 'seven');
   variable_set('node_admin_theme', '1');
+
+  // Disable the overlay module.
+  module_disable(array('overlay'), TRUE);
+}
+
+/**
+ * Implements hook_update_N().
+ */
+function headless_update_7000() {
+  module_disable(array('overlay'), TRUE);
 }
