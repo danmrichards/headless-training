@@ -12,7 +12,7 @@ use Drupal\restful\Plugin\resource\ResourceNode;
 
 /**
  * Class Blogs__1_0
- * @package Drupal\restful\Plugin\resource
+ * @package Drupal\headless_restful\Plugin\resource
  *
  * @Resource(
  *   name = "blogs:1.0",
