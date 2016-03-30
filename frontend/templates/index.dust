@@ -1,0 +1,9 @@
+<html>
+    <head>
+        <title>Welcome to Headless Drupal</title>
+    </head>
+    <body>
+        <h1>{name}, Welcome to Headless Drupal.</h1>
+        <h2>This is quite good isn't it.</h2>
+    </body>
+</html>
