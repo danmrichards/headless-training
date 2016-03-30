@@ -1,0 +1,17 @@
+# Ignore configuration files that may contain sensitive information.
+sites/*/settings.local.php
+
+# Ignore paths that contain user-generated content.
+sites/*/files
+sites/*/private
+
+# Ignore MAC OS X system files.
+.DS_*
+
+# Ignore the node modules folder (created by 'npm install').
+node_modules
+
+# We absolutely don't want to have the .sass-cache in git.
+.sass-cache
+
+Gemfile.lock
