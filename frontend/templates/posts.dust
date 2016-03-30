@@ -7,7 +7,7 @@
         <h2>This is quite good isn't it.</h2>
 
         {#posts}
-        <h3><a href="/article/{id}">{title}</a></h3>
+        <h3><a href="/blog/{id}">{title}</a></h3>
         <p>{body}</p>
         {/posts}
     </body>

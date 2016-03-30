@@ -36,11 +36,47 @@ app.get('/api', function (req, res) {
   res.send(model);
 });
 
-// Articles route.
-app.get('/articles', function (req, res) {
-  res.render('articles', posts);
+// Blog route.
+app.get('/blog', function (req, res) {
+  res.render('posts', posts);
+});
+
+// Article route.
+app.get('/blog/:id', function (req, res) {
+  var post = getPostByID(req.params.id);
+
+  // Render the post if we find one with a matching ID.
+  if (post) {
+    res.render('post', post);
+  }
+  else {
+    // There is no matching post.
+    res.status(404).send('404 - Article not found');
+  }
 });
 
 // Get things going.
 app.listen(port, hostname);
 console.log('App is listening on http://%s:%s', hostname, port);
+
+/**
+ * Load a blog post by it's ID.
+ *
+ * @param mixed id
+ *   The ID of the blog post to display. Will be converted to an int if
+ *   not one already.
+ *
+ * @return mixed
+ *   JSON object representing the post or false if one cannot be found.
+ */
+function getPostByID(id) {
+  // Loop through the posts.
+  for (var i = 0; i < posts.posts.length; i++) {
+    // Check for a matching ID.
+    if (parseInt(id) === posts.posts[i].id) {
+      return posts.posts[i];
+    }
+  }
+
+  return false;
+}
