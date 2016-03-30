@@ -55,6 +55,15 @@ class Blogs__1_1 extends ResourceEntity implements ResourceInterface {
       ),
     );
 
+    $public_fields['series'] = array(
+      'property' => 'field_blog_series_term_tree',
+      'resource' => array(
+        'name' => 'series',
+        'minorVersion' => 0,
+        'majorVersion' => 1,
+      ),
+    );
+
     $public_fields['lead_image'] = array(
       'property' => 'field_lead_image',
       'process_callbacks' => array(
