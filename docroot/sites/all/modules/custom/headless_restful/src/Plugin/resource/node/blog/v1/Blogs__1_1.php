@@ -44,6 +44,8 @@ class Blogs__1_1 extends ResourceEntity implements ResourceInterface {
       'sub_property' => 'value',
     );
 
+    // The 'resource' key has to match the machine name of an existing
+    // RESTful API resource. The version number can be specified too.
     $public_fields['categories'] = array(
       'property' => 'field_blog_categories_term_tree',
       'resource' => array(
@@ -53,7 +55,40 @@ class Blogs__1_1 extends ResourceEntity implements ResourceInterface {
       ),
     );
 
+    $public_fields['lead_image'] = array(
+      'property' => 'field_lead_image',
+      'process_callbacks' => array(
+        array($this, 'headlessImageProcess'),
+      ),
+      'image_styles' => array(
+        'thumbnail',
+        'medium',
+        'large',
+      ),
+    );
+
     return $public_fields;
+  }
+
+  /**
+   * Process callback, Remove Drupal specific items from the image array.
+   *
+   * @param array $value
+   *   The image array.
+   *
+   * @return array
+   *   A cleaned image array.
+   */
+  public function headlessImageProcess(array $value) {
+    return array(
+      'id' => $value['fid'],
+      'self' => file_create_url($value['uri']),
+      'filemime' => $value['filemime'],
+      'filesize' => $value['filesize'],
+      'width' => $value['width'],
+      'height' => $value['height'],
+      'styles' => $value['image_styles'],
+    );
   }
 
 }
