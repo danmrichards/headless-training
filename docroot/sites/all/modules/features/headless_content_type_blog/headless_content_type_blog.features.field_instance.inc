@@ -10,6 +10,48 @@
 function headless_content_type_blog_field_default_field_instances() {
   $field_instances = array();
 
+  // Exported field_instance: 'node-blog-body'.
+  $field_instances['node-blog-body'] = array(
+    'bundle' => 'blog',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 6,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'body',
+    'label' => 'Body',
+    'required' => 0,
+    'settings' => array(
+      'display_summary' => 0,
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 20,
+        'summary_rows' => 5,
+      ),
+      'type' => 'text_textarea_with_summary',
+      'weight' => 2,
+    ),
+  );
+
   // Exported field_instance: 'node-blog-field_blog_categories_term_tree'.
   $field_instances['node-blog-field_blog_categories_term_tree'] = array(
     'bundle' => 'blog',
@@ -43,7 +85,7 @@ function headless_content_type_blog_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 0,
+      'weight' => 5,
     ),
   );
 
@@ -85,7 +127,7 @@ function headless_content_type_blog_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => -1,
+      'weight' => 4,
     ),
   );
 
@@ -122,7 +164,7 @@ function headless_content_type_blog_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 1,
+      'weight' => 6,
     ),
   );
 
@@ -172,7 +214,7 @@ function headless_content_type_blog_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => -2,
+      'weight' => 3,
     ),
   );
 
@@ -222,7 +264,7 @@ function headless_content_type_blog_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => -3,
+      'weight' => 1,
     ),
   );
 
@@ -230,6 +272,7 @@ function headless_content_type_blog_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Blog Categories');
   t('Blog Series');
+  t('Body');
   t('Files');
   t('Inline Images');
   t('Lead Image');
