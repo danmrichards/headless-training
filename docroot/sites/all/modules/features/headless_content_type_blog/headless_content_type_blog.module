@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Headless Content Type - Blog feature.
+ */
+
+include_once 'headless_content_type_blog.features.inc';

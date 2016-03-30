@@ -1,0 +1,9 @@
+name = Headless Vocabulary - Series
+core = 7.x
+package = Features
+version = 7.x-1.0
+dependencies[] = features
+dependencies[] = taxonomy
+features[features_api][] = api:2
+features[taxonomy][] = series
+project path = sites/all/modules/features

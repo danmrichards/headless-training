@@ -23,3 +23,16 @@ dependencies[] = overlay
 dependencies[] = field_ui
 dependencies[] = file
 dependencies[] = rdf
+
+; Contrib
+dependencies[] = ctools
+dependencies[] = features
+dependencies[] = strongarm
+
+; Custom
+
+; Features
+dependencies[] = headless_field_bases
+dependencies[] = headless_vocabulary_category
+dependencies[] = headless_vocabulary_series
+dependencies[] = headless_content_type_blog
