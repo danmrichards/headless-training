@@ -44,6 +44,18 @@ class Blogs__1_1 extends ResourceEntity implements ResourceInterface {
       'sub_property' => 'value',
     );
 
+    $public_fields['lead_image'] = array(
+      'property' => 'field_lead_image',
+      'process_callbacks' => array(
+        array($this, 'headlessImageProcess'),
+      ),
+      'image_styles' => array(
+        'thumbnail',
+        'medium',
+        'large',
+      ),
+    );
+
     // The 'resource' key has to match the machine name of an existing
     // RESTful API resource. The version number can be specified too.
     $public_fields['categories'] = array(
@@ -64,15 +76,15 @@ class Blogs__1_1 extends ResourceEntity implements ResourceInterface {
       ),
     );
 
-    $public_fields['lead_image'] = array(
-      'property' => 'field_lead_image',
-      'process_callbacks' => array(
-        array($this, 'headlessImageProcess'),
-      ),
-      'image_styles' => array(
-        'thumbnail',
-        'medium',
-        'large',
+    $public_fields['user'] = array(
+      'property' => 'author',
+      'resource' => array(
+        // This is a RESTful core resource.
+        'name' => 'users',
+        // Determines if the entire resource should appear, or only the ID.
+        'fullView' => TRUE,
+        'majorVersion' => 1,
+        'minorVersion' => 0,
       ),
     );
 
