@@ -1,0 +1,15 @@
+{
+  "name": "headless-training",
+  "version": "1.0.0",
+  "description": "Frontend for the Headless Training website",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dan Richards <dan.m.richards@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "adaro": "^1.0.4",
+    "express": "^4.13.4"
+  }
+}

@@ -1,12 +1,14 @@
 # Headless Drupal Training
 
-Headless Drupal training codebase based on http://www.mirzu.com/headless-training-book/
+Headless Drupal training codebase based on http://www.mirzu.com/headless-training-book/.
 
-## Installation
+The backend of the codebase is powered by Drupal 7. The front end is powered by NodeJS & ExpressJS.
 
-Check the database settings in the `docroot/sites/default/settings.php` file.
+## Drupal Installation
 
-Run the following drush command from the `docroot` directory:
+Check the database settings in the `drupal/docroot/sites/default/settings.php` file.
+
+Run the following drush command from the `drupal/docroot` directory:
 
 ```
 drush site-install headless --site-name=Headless --uri=default
