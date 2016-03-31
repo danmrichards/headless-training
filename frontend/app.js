@@ -35,10 +35,10 @@ app.get('/blog', function (req, res) {
   cacheKey = crypto.createHash('sha1').update(req.url + port).toString();
 
   // Check if a cached version of this data already exists.
-  client.mget(cacheKey, function (err, reply) {
+  client.mget(cacheKey, function (err, results) {
     // We have some cached data so use it.
-    if (reply !== null) {
-      return res.send(JSON.parse(reply));
+    if (results[0] !== null) {
+      return res.send(JSON.parse(results));
     }
     else {
       // The cache was empty so pull it from Drupal.
