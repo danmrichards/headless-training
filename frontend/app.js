@@ -11,6 +11,11 @@ var request = require('request');
 var crypto = require('crypto');
 var client = redis.createClient();
 
+// Check for redis errors.
+client.on('error', function (err) {
+  console.log('A Redis error occured ' + err);
+});
+
 // Setup the app variables.
 var app = express();
 var hostname = '192.168.56.111';
@@ -30,7 +35,7 @@ app.get('/blog', function (req, res) {
   cacheKey = crypto.createHash('sha1').update(req.url + port).toString();
 
   // Check if a cached version of this data already exists.
-  client.get(cacheKey, function (err, reply) {
+  client.mget(cacheKey, function (err, reply) {
     // We have some cached data so use it.
     if (reply !== null) {
       return res.send(JSON.parse(reply));
@@ -42,7 +47,10 @@ app.get('/blog', function (req, res) {
         json: true
       }, function (error, response, body) {
         // Update the cache and show the response.
-        client.set(cacheKey, JSON.stringify(body), function (err, reply) {
+        client.multi([
+          ['set', cacheKey, JSON.stringify(body)],
+          ['expire', cacheKey, 800]
+        ]).exec(function (err, replies) {
           return res.send(body);
         });
       });
