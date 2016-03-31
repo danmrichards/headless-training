@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>Welcome to Headless Drupal</title>
+    </head>
+    <body>
+        <h1>Welcome to Headless Drupal.</h1>
+        <h2>This is quite good isn't it.</h2>
+
+        {#data}
+        <div class="post">
+            <h3><a href="/blog/{id}">{label}</a></h3>
+            <img src="{lead_image.styles.thumbnail}">
+            <p>{body|s}</p>
+        </div>
+        {/data}
+    </body>
+</html>
