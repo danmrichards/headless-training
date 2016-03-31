@@ -4,17 +4,51 @@
  */
 
 var express = require('express');
+var path = require('path');
 var adaro = require('adaro');
+var redis = require('redis');
+var request = require('request');
+var crypto = require('crypto');
+var client = redis.createClient();
 
 // Setup the app variables.
 var app = express();
 var hostname = '192.168.56.111';
 var port = process.env.PORT || 3000;
+var api = 'http://headless-training.dev/api';
+var blogEndpoint = api + '/v1.1/blogs';
+var cacheKey;
 
 // Setup adaro.
 app.set('views', 'templates');
 app.engine('dust', adaro.dust({cache: false}));
 app.set('view engine', 'dust');
+
+// Set up the blog route.
+app.get('/blog', function (req, res) {
+  // Build the cache key.
+  cacheKey = crypto.createHash('sha1').update(req.url + port).toString();
+
+  // Check if a cached version of this data already exists.
+  client.get(cacheKey, function (err, reply) {
+    // We have some cached data so use it.
+    if (reply !== null) {
+      return res.send(JSON.parse(reply));
+    }
+    else {
+      // The cache was empty so pull it from Drupal.
+      request({
+        url: blogEndpoint,
+        json: true
+      }, function (error, response, body) {
+        // Update the cache and show the response.
+        client.set(cacheKey, JSON.stringify(body), function (err, reply) {
+          return res.send(body);
+        });
+      });
+    }
+  });
+});
 
 // Get things going.
 app.listen(port, hostname);
