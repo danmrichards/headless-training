@@ -23,7 +23,6 @@ var port = process.env.PORT || 3000;
 var api = 'http://headless-training.dev/api';
 var blogEndpoint = api + '/v1.1/blogs';
 var cacheKey;
-var posts;
 
 // Setup adaro.
 app.set('views', 'templates');
@@ -39,8 +38,7 @@ app.get('/blog', function (req, res) {
   client.mget(cacheKey, function (err, results) {
     // We have some cached data so use it.
     if (results[0] !== null) {
-      posts = JSON.parse(results);
-      return res.render('posts', posts);
+      return res.render('posts', JSON.parse(results));
     }
     else {
       // The cache was empty so pull it from Drupal.
@@ -53,8 +51,7 @@ app.get('/blog', function (req, res) {
           ['set', cacheKey, JSON.stringify(body)],
           ['expire', cacheKey, 800]
         ]).exec(function (err, replies) {
-          posts = body;
-          return res.render('posts', posts);
+          return res.render('posts', body);
         });
       });
     }
@@ -70,7 +67,7 @@ app.get('/blog/:id', function (req, res) {
   client.mget(cacheKey, function (err, results) {
     // We have some cached data so use it.
     if (results[0] !== null) {
-      return res.send(JSON.parse(results));
+      return res.render('post', JSON.parse(results).data[0]);
     }
     else {
       // The cache was empty so pull it from Drupal.
@@ -83,7 +80,7 @@ app.get('/blog/:id', function (req, res) {
           ['set', cacheKey, JSON.stringify(body)],
           ['expire', cacheKey, 800]
         ]).exec(function (err, replies) {
-          return res.send(body);
+          return res.render('post', body.data[0]);
         });
       });
     }
